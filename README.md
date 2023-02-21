@@ -1,2 +1,2 @@
 # techRefresher
-Contains all the concepts as a revision.
+Contains all the concepts of different tech subjects as a revision.
