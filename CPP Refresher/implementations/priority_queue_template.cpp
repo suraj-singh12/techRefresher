@@ -220,6 +220,5 @@ int main() {
     while (!stringMinPQ.isEmpty()) {
         cout << stringMinPQ.pop() << " ";
     }
-
     return 0;
 }
