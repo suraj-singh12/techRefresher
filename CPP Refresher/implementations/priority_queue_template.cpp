@@ -43,7 +43,7 @@ public:
 
     void push(const T& value) {
         heap.push_back(value);
-        heapifyUp(heap.size() - 1);
+        heapifyUp(heap.size() - 1);     // balance heap (if may be not balanced after inserting new element)
     }
 
     T top() const {
@@ -60,7 +60,7 @@ public:
         T root = heap[0];
         heap[0] = heap.back();
         heap.pop_back();
-        heapifyDown(0);
+        heapifyDown(0);         // balance heap (from root)
         return root;
     }
 
@@ -73,13 +73,19 @@ public:
     }
 
     void heapSort() {
+        // build heap 
         for (int i = heap.size() / 2 - 1; i >= 0; i--) {
             heapifyDown(i);
         }
+
+        // sort heap in ascending order
         for (int i = heap.size() - 1; i > 0; i--) {
             swap(heap[0], heap[i]);
             heapifyDown(0, i);
         }
+
+        for(int i = 0; i < heap.size(); ++i) cout << heap[i] << " ";
+        cout << endl;
     }
 };
 
@@ -232,5 +238,6 @@ int main() {
     while (!stringMinPQ.isEmpty()) {
         cout << stringMinPQ.pop() << " ";
     }
+
     return 0;
 }
