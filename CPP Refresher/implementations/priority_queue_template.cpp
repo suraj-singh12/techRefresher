@@ -20,14 +20,16 @@ private:
         }
     }
 
-    void heapifyDown(int index) {
+    void heapifyDown(int index, int heapsize = -1) {
+        if(heapsize == -1) heapsize = heap.size();
+
         int leftChild = 2 * index + 1;
         int rightChild = 2 * index + 2;
         int root = index;
-        if (leftChild < heap.size() && cmp(heap[root], heap[leftChild])) {
+        if (leftChild < heapsize && cmp(heap[root], heap[leftChild])) {
             root = leftChild;
         }
-        if (rightChild < heap.size() && cmp(heap[root], heap[rightChild])) {
+        if (rightChild < heapsize && cmp(heap[root], heap[rightChild])) {
             root = rightChild;
         }
         if (root != index) {
@@ -68,6 +70,16 @@ public:
 
     bool isEmpty() const {
         return heap.size() == 0;
+    }
+
+    void heapSort() {
+        for (int i = heap.size() / 2 - 1; i >= 0; i--) {
+            heapifyDown(i);
+        }
+        for (int i = heap.size() - 1; i > 0; i--) {
+            swap(heap[0], heap[i]);
+            heapifyDown(0, i);
+        }
     }
 };
 
